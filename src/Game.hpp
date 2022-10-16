@@ -2,6 +2,7 @@
 #define GAME_HPP
 
 #include <iosfwd>
+#include <string>
 #include "Map.hpp"
 
 namespace conway
@@ -12,6 +13,7 @@ namespace conway
     Game();
     ~Game() = default;
     void run();
+    void configureMap(const std::string&);
 
   private:
     conway::Map map_;

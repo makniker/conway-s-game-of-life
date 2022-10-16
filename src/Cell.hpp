@@ -7,6 +7,7 @@ namespace conway
   {
   public:
     Cell();
+    Cell(bool);
     ~Cell() = default;
     void destroy();
     void revive();

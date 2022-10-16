@@ -13,9 +13,14 @@ conway::Map::Map(std::size_t height, std::size_t width) : height_(height), width
   }
 }
 
-std::size_t conway::Map::getNeighbours(const Cell &) const
+conway::Map::Map(std::vector<std::vector<Cell>> map, std::size_t height, std::size_t width) : height_(height), width_(width), map_(map)
 {
-  return 2;
+}
+
+std::size_t conway::Map::getNeighbours(std::size_t i, std::size_t j) const
+{
+  //написать программу по поиску соседей
+  return i + j;
 }
 
 void conway::Map::update()
@@ -30,11 +35,11 @@ void conway::Map::update()
   {
     for (size_t j = 0; j < width_; j++)
     {
-      if (getNeighbours(map_[i][j]) == 3 && !map_[i][j].isAlive_)
+      if (getNeighbours(i, j) == 3 && !map_[i][j].isAlive_)
       {
         map_[i][j].revive();
       }
-      else if (getNeighbours(map_[i][j]) == 3 || getNeighbours(map_[i][j]) == 2)
+      else if (getNeighbours(i, j) == 3 || getNeighbours(i, j) == 2)
       {
         map_[i][j].revive();
       }
@@ -52,7 +57,7 @@ std::ostream &conway::operator<<(std::ostream & out, const Map & map)
   {
     for (size_t j = 0; j < map.width_; j++)
     {
-      out << map.map_[i][j].isAlive_;
+      out << map.map_[i][j].isAlive_ << " ";
     }
     out << "\n";
   }

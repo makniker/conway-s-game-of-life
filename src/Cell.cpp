@@ -6,16 +6,10 @@
 
 conway::Cell::Cell()
 {
-  srand(time(0));
-  int n = rand();
-  if (n % 2 == 1)
-  {
-    isAlive_ = 0;
-  }
-  else
-  {
-    isAlive_ = 1;
-  }
+}
+
+conway::Cell::Cell(bool isAlive): isAlive_(isAlive)
+{
 }
 
 void conway::Cell::destroy()
