@@ -6,7 +6,11 @@
 int main(int argc, char *argv[])
 {
   conway::Game game;
-  game.configureMap(argv[1]);
+  if (argc == 2)
+  {
+    std::string mapPath = argv[1];
+    game.configureMap(argv[1]);
+  }
   game.run();
   return 0;
 }

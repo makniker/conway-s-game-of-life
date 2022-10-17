@@ -22,7 +22,7 @@ namespace conway
 
     std::size_t height_;
     std::size_t width_;
-    std::vector< std::vector< Cell > > map_;
+    std::vector<std::vector<Cell>> map_;
   };
 
   std::ostream &operator<<(std::ostream &, const Map &);

@@ -1,23 +1,34 @@
 #include "Cell.hpp"
 
+#include <ostream>
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
 
-conway::Cell::Cell()
+conway::Cell::Cell() : state(State::Alive)
 {
 }
 
-conway::Cell::Cell(bool isAlive): isAlive_(isAlive)
+conway::Cell::Cell(char state) : state(state == 1 ? State::Alive : State::Dead)
 {
 }
 
 void conway::Cell::destroy()
 {
-  isAlive_ = false;
+  state = State::Dead;
 }
 
 void conway::Cell::revive()
 {
-  isAlive_ = true;
+  state = State::Alive;
+}
+
+conway::State conway::Cell::getState() const
+{
+  return state;
+}
+
+std::ostream &conway::operator<<(std::ostream &out, const Cell &cell)
+{
+  return out << (cell.getState() == State::Alive);
 }

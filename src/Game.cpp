@@ -5,23 +5,23 @@
 #include <thread>
 #include <chrono>
 
-conway::Game::Game(): map_()
+conway::Game::Game() : map_()
 {
-
 }
 
 void conway::Game::run()
 {
+  printHello();
   using namespace std::chrono_literals;
   auto start = std::chrono::high_resolution_clock::now();
   //добавить ввод символов от пользователя
   int i = 0;
   while (i < 10)
   {
+    printMapOnConsole();
     map_.update();
-    std::cout << map_;
     std::this_thread::sleep_for(500ms);
-    //system("cls");
+    system("cls");
     ++i;
   }
 }
@@ -43,7 +43,7 @@ void conway::Game::configureMap(const std::string &filename)
       std::getline(file, line);
       for (size_t j = 0; j < width; j++)
       {
-        w[j] = Cell(line[j] == '1' ? true : false );
+        w[j] = Cell(line[j] == '1' ? true : false);
       }
       newMap[i] = w;
     }

@@ -13,9 +13,11 @@ namespace conway
     Game();
     ~Game() = default;
     void run();
-    void configureMap(const std::string&);
+    void configureMap(const std::string &);
 
   private:
+    void printHello();
+    void printMapOnConsole();
     conway::Map map_;
   };
 }

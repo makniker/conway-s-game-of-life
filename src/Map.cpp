@@ -8,24 +8,25 @@ conway::Map::Map(std::size_t height, std::size_t width) : height_(height), width
 {
   for (size_t i = 0; i < height_; i++)
   {
-    std::vector< Cell > w(width_, Cell());
+    std::vector<Cell> w(width_, Cell());
     map_[i] = w;
   }
 }
 
-conway::Map::Map(std::vector<std::vector<Cell>> map, std::size_t height, std::size_t width) : height_(height), width_(width), map_(map)
+conway::Map::Map(std::vector<std::vector<Cell>> map, std::size_t height, std::size_t width)
+    : height_(height), width_(width), map_(map)
 {
 }
 
 std::size_t conway::Map::getNeighbours(std::size_t i, std::size_t j) const
 {
   //написать программу по поиску соседей
-  return i + j;
+  return 0;
 }
 
 void conway::Map::update()
 {
-  std::vector< std::vector< Cell> > newMap(height_);
+  std::vector<std::vector<Cell>> newMap(height_);
   for (size_t i = 0; i < height_; i++)
   {
     std::vector<Cell> w(width_, Cell());
@@ -35,29 +36,30 @@ void conway::Map::update()
   {
     for (size_t j = 0; j < width_; j++)
     {
-      if (getNeighbours(i, j) == 3 && !map_[i][j].isAlive_)
+      if (getNeighbours(i, j) == 3 && map_[i][j].getState() == State::Dead)
       {
-        map_[i][j].revive();
+        newMap[i][j].revive();
       }
       else if (getNeighbours(i, j) == 3 || getNeighbours(i, j) == 2)
       {
-        map_[i][j].revive();
+        newMap[i][j].revive();
       }
       else
       {
-        map_[i][j].destroy();
+        newMap[i][j].destroy();
       }
     }
   }
+  map_ = newMap;
 }
 
-std::ostream &conway::operator<<(std::ostream & out, const Map & map)
+std::ostream &conway::operator<<(std::ostream &out, const Map &map)
 {
   for (size_t i = 0; i < map.height_; i++)
   {
     for (size_t j = 0; j < map.width_; j++)
     {
-      out << map.map_[i][j].isAlive_ << " ";
+      out << map.map_[i][j] << " ";
     }
     out << "\n";
   }
