@@ -18,7 +18,9 @@ namespace conway
   private:
     void printHello();
     void printMapOnConsole();
+    void runGameLoop();
     conway::Map map_;
+    bool isRunning_;
   };
 }
 

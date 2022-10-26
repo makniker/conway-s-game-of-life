@@ -2,6 +2,7 @@
 #define CELL_HPP
 
 #include <iosfwd>
+#include <ostream>
 
 namespace conway
 {
@@ -20,13 +21,13 @@ namespace conway
     void destroy();
     void revive();
     State getState() const;
-    friend std::ostream &conway::operator<<(std::ostream &out, const Cell &cell);
+    friend std::ostream &operator<<(std::ostream &out, const Cell &cell);
 
   private:
-    State state;
+    State state_;
   };
 
-  std::ostream &conway::operator<<(std::ostream &out, const Cell &cell);
+  std::ostream &operator<<(std::ostream &out, const Cell &cell);
 }
 
 #endif

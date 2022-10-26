@@ -20,8 +20,51 @@ conway::Map::Map(std::vector<std::vector<Cell>> map, std::size_t height, std::si
 
 std::size_t conway::Map::getNeighbours(std::size_t i, std::size_t j) const
 {
-  //написать программу по поиску соседей
-  return 0;
+  std::size_t num = 0;
+  if (i != 0 && i != height_ - 1 && j != 0 && j != width_ - 1)
+  {
+    num += map_[i + 1][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i + 1][j].getState() == State::Alive ? 1 : 0;
+    num += map_[i + 1][j + 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i][j + 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j + 1].getState() == State::Alive ? 1 : 0;
+  }
+  else if (i == 0 && j != 0 && j != width_ - 1)
+  {
+    num += map_[i + 1][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i + 1][j].getState() == State::Alive ? 1 : 0;
+    num += map_[i + 1][j + 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i][j + 1].getState() == State::Alive ? 1 : 0;
+  }
+  else if (i == height_ - 1 && j != 0 && j != width_ - 1)
+  {
+    num += map_[i][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i][j + 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j + 1].getState() == State::Alive ? 1 : 0;
+  }
+  else if (i != 0 && i != height_ - 1 && j == 0)
+  {
+    num += map_[i + 1][j].getState() == State::Alive ? 1 : 0;
+    num += map_[i + 1][j + 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i][j + 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j + 1].getState() == State::Alive ? 1 : 0;
+  }
+  else if (i != 0 && i != height_ - 1 && j == width_ - 1)
+  {
+    num += map_[i + 1][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i + 1][j].getState() == State::Alive ? 1 : 0;
+    num += map_[i][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j - 1].getState() == State::Alive ? 1 : 0;
+    num += map_[i - 1][j].getState() == State::Alive ? 1 : 0;
+  }
+  return num;
 }
 
 void conway::Map::update()
